@@ -124,7 +124,7 @@ if (isset($_POST['login'])) {
                 if ($tipo_usuario == 'administrador') {
                     header("Location: ./admin/admin.php");
                 } else {
-                    header("Location: ./recepcionista/recepcionista.php");
+                    header("Location: ./recepcionista/dasboard.php");
                 }
                 exit;
             } else {

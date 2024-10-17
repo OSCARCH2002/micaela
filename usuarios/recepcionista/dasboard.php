@@ -1,3 +1,37 @@
+<?php
+// Incluir archivo de conexión
+include('../../database/conexion.php');
+
+
+// Habilitar errores para depuración
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Inicializar variables
+$reservas_activas = 0;
+$eventos_programados = 0;
+
+// Nombre del usuario
+$nombre_usuario = "Usuario"; // Cambia "Usuario" por el nombre real
+
+try {
+    // Consulta para obtener el número de reservas activas basadas en las fechas
+    $query_reservas = "SELECT COUNT(*) AS total_reservas FROM reservas WHERE CURDATE() <= fecha_salida";
+    $resultado_reservas = $conexion->query($query_reservas);
+    $fila_reservas = $resultado_reservas->fetch(PDO::FETCH_ASSOC);
+    $reservas_activas = $fila_reservas['total_reservas'];
+
+    // Consulta para obtener el número de eventos programados para este mes
+    $query_eventos = "SELECT COUNT(*) AS total_eventos FROM evento WHERE MONTH(fecha_evento) = MONTH(CURRENT_DATE())";
+    $resultado_eventos = $conexion->query($query_eventos);
+    $fila_eventos = $resultado_eventos->fetch(PDO::FETCH_ASSOC);
+    $eventos_programados = $fila_eventos['total_eventos'];
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,6 +41,7 @@
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -21,14 +56,12 @@
             background-color: #ecf0f1;
         }
 
-        /* Estilo del sidebar */
         .sidebar {
             width: 250px;
             background-color: #2c3e50;
             color: #ecf0f1;
             padding: 30px 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-            position: relative;
         }
 
         .sidebar h2 {
@@ -66,7 +99,6 @@
             transform: scale(1.02);
         }
 
-        /* Estilo del contenedor del contenido */
         .content {
             flex-grow: 1;
             padding: 40px;
@@ -123,7 +155,6 @@
             background-color: #1abc9c;
         }
 
-        /* Estilos de tarjetas */
         .card {
             background-color: white;
             border-radius: 8px;
@@ -146,11 +177,19 @@
             color: #555;
         }
 
-        /* Estilo para los mensajes de error */
         .error-message {
             color: red;
             font-weight: bold;
             margin-top: 20px;
+        }
+
+        /* Estilo para el gráfico */
+        .chart-container {
+            position: relative;
+            height: 40vh;
+            width: 100%; /* Cambiado a 100% para centrar las barras */
+            max-width: 800px; /* Ancho máximo para el gráfico */
+            margin: 0 auto; /* Centramos el contenedor */
         }
     </style>
 </head>
@@ -169,7 +208,7 @@
 
     <div class="content" id="content">
         <div class="navbar">
-            <h3>Bienvenido al Dashboard</h3>
+            <h3>Bienvenido, <?php echo $nombre_usuario; ?> al Dashboard</h3>
             <div class="user-menu">
                 <span>Usuario</span>
                 <div class="dropdown">
@@ -179,20 +218,23 @@
         </div>
         <div class="card">
             <h4>Resumen de Reservas</h4>
-            <p>Hay 10 reservas activas en este momento.</p>
+            <p>Hay <?php echo $reservas_activas; ?> reservas activas en este momento.</p>
         </div>
         <div class="card">
             <h4>Eventos Programados</h4>
-            <p>Se han programado 5 eventos para este mes.</p>
+            <p>Se han programado <?php echo $eventos_programados; ?> eventos para este mes.</p>
+        </div>
+
+        <!-- Gráfico de reservas y eventos -->
+        <div class="chart-container">
+            <canvas id="reservasEventosChart"></canvas>
         </div>
     </div>
 
     <script>
-        // Función para cargar el contenido de las secciones
         function loadContent(page) {
             const contentDiv = document.getElementById('content');
 
-            // Realiza la solicitud AJAX
             fetch(page)
                 .then(response => {
                     if (!response.ok) {
@@ -201,20 +243,46 @@
                     return response.text();
                 })
                 .then(data => {
-                    contentDiv.innerHTML = data; // Inserta el contenido cargado
+                    contentDiv.innerHTML = data;
                 })
                 .catch(error => {
-                    contentDiv.innerHTML = `<p class="error-message">${error.message}</p>`; // Muestra error si falla
+                    contentDiv.innerHTML = `<p class="error-message">${error.message}</p>`;
                 });
         }
 
-        // Función para cerrar sesión (simulada)
         function cerrarSesion() {
             alert("Has cerrado sesión.");
-            // Aquí podrías redirigir al usuario a una página de login o inicio.
         }
-    </script>
 
+        // Gráfico de reservas y eventos
+        const ctx = document.getElementById('reservasEventosChart').getContext('2d');
+        const reservasEventosChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Reservas Activas', 'Eventos Programados'],
+                datasets: [{
+                    label: 'Total',
+                    data: [<?php echo $reservas_activas; ?>, <?php echo $eventos_programados; ?>],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

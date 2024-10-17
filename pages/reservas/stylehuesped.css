@@ -1,0 +1,425 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #23262F; 
+    color: #EAEAEA; 
+    margin: 0; 
+    padding: 20px; 
+    line-height: 1.6;
+}
+
+h2, h3 {
+    color: #F1F1F1;
+    font-weight: bold;
+}
+
+.text-muted {
+    font-size: 28px;
+    color: #B0B0B0 !important; 
+}
+
+.container .text-muted {
+    font-size: 28px; 
+    color: #B0B0B0;
+}
+
+h2 {
+    font-size: 32px; 
+}
+
+h3 {
+    font-size: 22px; 
+}
+
+.room-title {
+    font-size: 24px; 
+    font-weight: bold;
+    color: #FFFFFF; 
+}
+
+.room-price {
+    font-size: 20px; 
+    color: #39c0cf;
+    font-weight: bold;
+}
+
+.room-description {
+    font-size: 18px;
+    color: #D3D3D3; 
+    line-height: 1.6;
+}
+
+.room-button {
+    background-color: #FF4C4C; 
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 16px; 
+}
+
+.room-button:hover {
+    background-color: #FF1A1A;
+}
+
+.amenities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 0;
+    font-size: 16px;
+    color: #EAEAEA;
+    justify-content: center;
+    align-items: center;
+}
+
+.amenities-list li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.amenities-list i {
+    margin-right: 8px;
+    color: #FFD700;
+    font-size: 24px;
+}
+
+.carousel-item p {
+    font-size: 16px;
+    color: #D3D3D3; 
+}
+
+.cookie-bar {
+    background-color: #333; 
+    color: #EAEAEA; 
+    padding: 10px;
+    text-align: center;
+}
+
+.cookie-bar button {
+    background-color: #FFD700; 
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.amenities-icon {
+    font-size: 40px; 
+    color: #FFD700; 
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    border-radius: 50%;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    color: #EAEAEA; 
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.img-fluid {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.carousel-container {
+    margin-top: 20px; 
+}
+
+.ver-mas-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#totalPagar {
+    color: #FFD700; /* Color dorado brillante para el texto */
+    font-weight: bold;
+    font-size: 20px; /* Tamaño adecuado para la legibilidad */
+    background-color: #1F1F1F; /* Fondo oscuro si deseas mantener el contraste */
+    border: 1px solid #FFD700; /* Borde dorado para darle más estilo */
+}
+
+.ver-mas-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Oscurece el fondo al pasar el mouse */
+}
+
+/* Efecto difuminado en el fondo cuando el modal está abierto */
+.modal-backdrop.show {
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px); /* Fondo difuminado */
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+    body {
+        text-align: center; /* Centrar texto en móviles */
+    }
+
+    h2 {
+        font-size: 28px; /* Tamaño del título principal en móviles */
+    }
+
+    h3 {
+        font-size: 20px; /* Tamaño del subtítulo en móviles */
+    }
+
+    .room-title {
+        font-size: 20px; /* Tamaño del título de la habitación en móviles */
+    }
+
+    .room-price {
+        font-size: 18px; /* Tamaño del precio en móviles */
+    }
+
+    .room-description {
+        font-size: 16px; /* Tamaño de la descripción en móviles */
+    }
+
+    .room-button {
+        padding: 10px 20px; /* Ajustar padding del botón en móviles */
+        font-size: 14px; /* Ajustar tamaño de fuente del botón en móviles */
+    }
+
+    .amenities-list {
+        font-size: 14px; /* Ajustar tamaño de la lista de amenidades en móviles */
+    }
+
+    .amenities-icon {
+        font-size: 28px; /* Ajustar tamaño del icono de amenidades en móviles */
+    }
+
+    .carousel-caption {
+        font-size: 12px; /* Ajustar tamaño de la fuente de la descripción del carrusel en móviles */
+    }
+
+    .ver-mas-btn {
+        font-size: 16px; /* Ajustar tamaño de fuente del botón "Ver más" en móviles */
+    }
+}
+
+
+
+
+
+/* Estilos para el modal profesional */
+.modal-content {
+    background-color: #2C2F36; /* Fondo oscuro para un look moderno */
+    color: #FFFFFF; /* Texto en blanco para un buen contraste */
+    border-radius: 15px; /* Bordes suavemente redondeados */
+    padding: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Sombra para darle profundidad */
+    transition: all 0.3s ease; /* Transición suave al abrir el modal */
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea sutil separadora */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.modal-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #B2925F; /* Un toque de color dorado */
+}
+
+.modal-body {
+    background-color: #23272F; 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3); 
+}
+
+
+
+.modal-footer button {
+    background-color: #B2925F;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+    background-color: #8A6D47; 
+}
+
+/* Estilo para los botones cerrar */
+.close {
+    color: #FFFFFF;
+    font-size: 24px;
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #B2925F;
+}
+
+/* Animación para que el modal aparezca suavemente */
+.modal.fade .modal-dialog {
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Efecto blur en el fondo cuando el modal está abierto */
+.modal-backdrop.show {
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px); 
+}
+
+/* Estilo para el contenido del modal */
+.modal-body h3 {
+    font-size: 22px;
+    color: #B2925F;
+    margin-bottom: 15px;
+}
+
+.modal-body p {
+    font-size: 16px;
+    color: #E0E0E0;
+    line-height: 1.6;
+}
+
+/* Estilo para los inputs dentro del modal */
+.modal-body input, .modal-body select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #2C2F36;
+    color: #FFF;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.modal-body input:focus, .modal-body select:focus {
+    border-color: #B2925F; 
+}
+
+.modal-body button {
+    background-color: #B2925F;
+   
+}
+
+.modal-body button:hover {
+    background-color: #8A6D47;
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 15px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-footer {
+        padding: 10px;
+    }
+}
+
+
+
+#imageContainer {
+    position: relative;
+    max-width: 100%; 
+    margin: auto; 
+    overflow: hidden; 
+}
+
+.image-stack {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+}
+
+/* Estilo para las imágenes */
+.image-stack-item {
+    width: calc(50% - 10px); 
+    max-width: 400px; 
+    height: 200px; 
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    object-fit: cover; 
+}
+
+.image-stack-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el botón "Ver más" */
+.ver-mas-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px; 
+    border-radius: 5px;
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    min-width: 140px; 
+    text-align: center; /
+}
+
+@media (max-width: 768px) {
+    .ver-mas-btn {
+        width: auto; 
+        padding: 12px 24px; 
+        font-size: 14px;
+    }
+}
+
+
+
+
+

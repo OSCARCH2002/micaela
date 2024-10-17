@@ -1,0 +1,209 @@
+<?php
+$host = $_SERVER['HTTP_HOST'];
+$url = "http://$host/hotel/";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micaela</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body {
+      padding-top: 100px; /* Espacio para el navbar fijo */
+      background-color: #f8f9fa; /* Fondo claro para contraste */
+    }
+
+    .navbar {
+      background-color: transparent; /* Fondo completamente transparente */
+      transition: background-color 0.3s; /* Suave transición para el cambio de color */
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(52, 58, 64, 0.8); /* Color de fondo oscuro al hacer scroll */
+    }
+
+    .navbar-brand img {
+      border-radius: 50%;
+      margin-right: 10px;
+      height: 80px;
+      transition: transform 0.3s; /* Efecto de zoom en el logo */
+    }
+
+    .navbar-brand img:hover {
+      transform: scale(1.05); /* Aumentar tamaño al pasar el ratón */
+    }
+
+    .navbar-nav {
+      margin: auto;
+      padding-top: 20px;
+    }
+
+    .nav-link {
+      border: none;
+      border-radius: 5px;
+      padding: 12px 20px;
+      transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+      margin: 5px;
+      color: #ffffff; /* Color del texto en blanco puro */
+      font-size: 18px;
+      font-weight: 700; /* Peso de fuente más pesado */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para mejorar la legibilidad */
+    }
+
+    .nav-link:hover {
+      background-color: rgba(221, 92, 217, 0.8); /* Color de fondo al pasar el ratón */
+      color: #ffffff; /* Mantener el color del texto al pasar el ratón */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra al pasar el ratón */
+    }
+
+    .nav-link:focus,
+    .nav-link:active {
+      outline: none;
+    }
+
+    .btn-primary {
+      border: none;
+      border-radius: 5px;
+      padding: 12px 20px;
+      transition: background-color 0.3s;
+      margin: 5px;
+      background-color: rgba(221, 92, 217, 0.8); /* Color atractivo para el botón */
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: rgba(89, 163, 220, 0.8); /* Efecto al pasar el ratón */
+    }
+
+    .btn-primary:focus,
+    .btn-primary:active {
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(52, 58, 64, 0.9);
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(100%);
+        padding-top: 20px;
+        z-index: 9999;
+      }
+
+      .navbar-collapse.show {
+        transform: translateX(0);
+        right: 0;
+      }
+
+      .nav-link {
+        font-size: 25px;
+        color: white;
+        text-align: center;
+        display: block;
+        font-weight: 700; /* Peso de fuente más pesado en móviles */
+      }
+
+      .navbar-toggler {
+        display: block;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        z-index: 10000;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .navbar-toggler {
+        display: none;
+      }
+
+      .navbar-collapse {
+        display: flex !important;
+      }
+
+      .navbar-nav {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .close-btn {
+        display: none; /* Ocultar la X en pantallas de computadora */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="<?php echo $url; ?>">
+      <img src="<?php echo $url; ?>log/logo.png" alt="Logo de Micaela Confort" height="40">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <span class="close-btn" data-toggle="collapse" data-target="#navbarSupportedContent">&times;</span>
+      <ul class="navbar-nav">
+        <?php
+        $paginas = array(
+          "Principal" => "principal",
+          "Reservar" => "reservas",
+          "Evento" => "evento",
+          "Galería" => "galeria"
+        );
+
+        foreach ($paginas as $nombre => $ruta) {
+          echo '<li class="nav-item">';
+          echo '<a class="nav-link" href="' . $url . 'pages/' . $ruta . '/">' . $nombre . '</a>';
+          echo '</li>';
+        }
+        ?>
+      </ul>
+    </div>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Cambiar el fondo de la barra de navegación al hacer scroll
+    $(window).on('scroll', function () {
+      if ($(this).scrollTop() > 50) {
+        $('.navbar').addClass('scrolled');
+      } else {
+        $('.navbar').removeClass('scrolled');
+      }
+    });
+  </script>
+</body>
+
+</html>
+
+
+
+//Mantener sesion
+session_start();
+// Asegúrate de que el usuario esté autenticado
+if (!isset($_SESSION['user'])) {
+    header("Location: ../index.php");
+    exit;
+}

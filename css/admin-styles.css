@@ -1,0 +1,53 @@
+/* Estilos para el administrador */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #454D55; /* Color de fondo deseado */
+}
+
+.nav-link {
+    color: #fff;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: #343A40;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #23272F;
+    color: #fff;
+    width: 250px;
+}
+
+.sidebar-sticky {
+    padding-top: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.main-content {
+    margin-left: 270px;
+    padding-top: 60px;
+    padding: 20px;
+}
+
+.logout-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.welcome-message {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+}

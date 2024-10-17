@@ -1,0 +1,154 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #23262F;
+  color: #B0B0B0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.title h1 {
+  font-size: 40px;
+  color: #F0F0F0;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+}
+
+.title p {
+  font-size: 18px;
+  color: #C0C0C0;
+  margin-bottom: 20px;
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.polaroid {
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  max-width: 300px;
+}
+
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid #FF4081;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.polaroid img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.polaroid p {
+  margin-top: 12px;
+  font-size: 16px;
+  font-style: italic;
+  color: #555;
+}
+
+.polaroid:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.polaroid img:hover {
+  transform: scale(1.1);
+}
+
+.polaroid:nth-child(odd) {
+  transform: rotate(-3deg);
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.polaroid:hover:nth-child(odd),
+.polaroid:hover:nth-child(even) {
+  transform: scale(1.08) rotate(0deg);
+}
+
+@media (max-width: 600px) {
+  header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .title h1 {
+    font-size: 32px;
+  }
+
+  .title p {
+    font-size: 16px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .polaroid {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .polaroid img {
+    height: 180px;
+  }
+
+  .polaroid p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .polaroid {
+    padding: 5px;
+  }
+
+  .title h1 {
+    font-size: 28px;
+  }
+
+  .title p {
+    font-size: 14px;
+  }
+}

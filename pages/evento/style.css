@@ -1,0 +1,89 @@
+
+        body {
+            background-color: #23272F;
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilos para los títulos de las secciones */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: whitesmoke;
+            /* Color morado */
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .info-section {
+            padding: 50px 0;
+        }
+
+        .info-card {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .info-card h4 {
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: #CCCCCC;
+        }
+
+        .gallery {
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 2px solid #6A0DAD;
+            /* Color morado */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilos para el formulario */
+        .formulario {
+            border: 2px solid #6A0DAD;
+            /* Color morado */
+            border-radius: 40px;
+            padding: 20px;
+            background-color: #2c2e3e;
+            /* Fondo oscuro */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Sombra suave */
+        }
+
+        .formulario .form-group label {
+            color: #FFFFFF;
+            /* Color de texto */
+        }
+
+        .formulario .form-control {
+            background-color: #41445a;
+            color: #FFFFFF;
+            border-color: #6A0DAD;
+        }
+
+        .formulario .btn-primary {
+            background-color: #6A0DAD;
+            border-color: #6A0DAD;
+         
+        }
+
+        .formulario .btn-primary:hover {
+            background-color: #510a8a;
+            border-color: #510a8a;
+        }
+ 

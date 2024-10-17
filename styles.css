@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #ff7a2a;
+}
+
+.room-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.room-info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 18px;
+    color: #ff7a2a;
+}
+
+.btn-reservar {
+    background-color: #d4b27e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-reservar:hover {
+    background-color: #c09666;
+}
+
+.room-images {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.thumbnails img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.main-image img {
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+}

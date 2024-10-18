@@ -115,26 +115,17 @@ if (isset($_POST['agregar_reserva'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Reserva</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-        }
-
-        .card {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../css/addreservas.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2>Agregar Reserva</h2>
-            </div>
-            <div class="card-body">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" oninput="calcularTotalPagar()">
+        <div class="card-header">
+            <h2>COMPLETA LOS DATOS PARA AÑADIR</h2>
+        </div>
+        <div class="card-body">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" oninput="calcularTotalPagar()">
+                <div class="form-container">
                     <div class="form-group">
                         <label for="id_habitacion">Número de Habitación:</label>
                         <select class="form-control" id="id_habitacion" name="id_habitacion" required>
@@ -174,13 +165,13 @@ if (isset($_POST['agregar_reserva'])) {
                         <label for="total_ninos">Total de Niños:</label>
                         <input type="number" class="form-control" id="total_ninos" name="total_ninos" min="0" max="2" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group total-pagar-group">
                         <label for="total_pagar">Total a Pagar:</label>
                         <input type="number" class="form-control" id="total_pagar" name="total_pagar" readonly>
                     </div>
-                    <button type="submit" class="btn btn-primary" name="agregar_reserva">Agregar Reserva</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" class="btn btn-primary" name="agregar_reserva">Agregar Reserva</button>
+            </form>
         </div>
     </div>
 
@@ -197,15 +188,14 @@ if (isset($_POST['agregar_reserva'])) {
             if (fechaLlegada && fechaSalida) {
                 var fecha1 = new Date(fechaLlegada);
                 var fecha2 = new Date(fechaSalida);
-                var tiempoDif = fecha2 - fecha1; // Diferencia en milisegundos
-                var dias = tiempoDif / (1000 * 3600 * 24); // Convertir a días
+                var tiempoDif = fecha2 - fecha1;
+                var dias = tiempoDif / (1000 * 3600 * 24);
 
                 if (dias > 30) {
-                    // Si son más de 30 días, cobrar solo el precio de un mes
                     $('#total_pagar').val(1800);
                 } else {
-                    var costoPorNoche = 300; // Precio por noche
-                    var totalPagar = costoPorNoche * dias + (totalAdultos > 2 ? (totalAdultos - 2) * 50 : 0); // Agregar comisión por adultos adicionales
+                    var costoPorNoche = 300;
+                    var totalPagar = costoPorNoche * dias + (totalAdultos > 2 ? (totalAdultos - 2) * 50 : 0);
                     $('#total_pagar').val(totalPagar);
                 }
             }

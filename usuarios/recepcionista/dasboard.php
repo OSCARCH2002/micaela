@@ -35,7 +35,7 @@ try {
 <body>
 
     <div class="sidebar">
-    <h2><a href="./dasboard.php" style="text-decoration: none; color: inherit;">Dashboard</a></h2>
+        <h2><a href="./dasboard.php" style="text-decoration: none; color: inherit;">Dashboard</a></h2>
         <ul>
             <li><button onclick="loadContent('./reservas.php')"><i class="fas fa-concierge-bell"></i> Reservas</button></li>
             <li><button onclick="loadContent('./addreservas.php')"><i class="fas fa-plus-circle"></i> Agregar Reservas</button></li>
@@ -47,6 +47,7 @@ try {
     <div class="content" id="content">
         <div class="navbar">
             <h3>Bienvenido <?php echo isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Usuario'; ?></h3>
+            <button onclick="window.location.href='../index.php'" class="btn-logout">Cerrar Sesión</button>
         </div>
         <div class="card">
             <h4>Resumen de Reservas</h4>
@@ -80,8 +81,6 @@ try {
                     contentDiv.innerHTML = `<p class="error-message">${error.message}</p>`;
                 });
         }
-
-    
 
         const ctx = document.getElementById('reservasEventosChart').getContext('2d');
         const reservasEventosChart = new Chart(ctx, {

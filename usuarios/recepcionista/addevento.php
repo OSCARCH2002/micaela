@@ -29,14 +29,14 @@ function agregarNuevoEvento($datos)
         $stmtCliente->bindParam(':nombre', $datos['nombre']);
         $stmtCliente->bindParam(':apellido', $datos['apellido']);
         $stmtCliente->bindParam(':telefono', $datos['telefono']);
-        
+
         if (!$stmtCliente->execute()) {
             throw new Exception('Error al insertar cliente: ' . implode(", ", $stmtCliente->errorInfo()));
         }
 
         // Obtener el id_cliente recién insertado
         $id_cliente = $conexion->lastInsertId();
-        
+
         if (!$id_cliente) {
             throw new Exception('Error al obtener el ID del cliente.');
         }
@@ -48,7 +48,7 @@ function agregarNuevoEvento($datos)
         $stmtEvento->bindParam(':fecha_evento', $datos['fecha_evento']);
         $stmtEvento->bindParam(':num_personas', $datos['num_personas']);
         $stmtEvento->bindParam(':id_cliente', $id_cliente);
-        
+
         if (!$stmtEvento->execute()) {
             throw new Exception('Error al insertar evento: ' . implode(", ", $stmtEvento->errorInfo()));
         }
@@ -56,7 +56,6 @@ function agregarNuevoEvento($datos)
         // Confirmar la transacción
         $conexion->commit();
         return json_encode(['success' => true, 'message' => 'Evento reservado exitosamente.']);
-
     } catch (PDOException $e) {
         // Si algo falla, revertir la transacción
         $conexion->rollBack();
@@ -84,27 +83,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Nuevo Evento</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/addevento.css">
 </head>
-<body class="fondo">
+
+<body>
     <div class="container">
         <h1 class="titulo">Agregar Nuevo Evento</h1>
         <form id="eventoForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Introduce el nombre" required>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" required>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Introduce el apellido" required>
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" name="telefono" required>
+                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Introduce el teléfono" required>
             </div>
             <div class="form-group">
                 <label for="fecha_evento">Fecha del Evento</label>
@@ -112,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
                 <label for="num_personas">Número de Personas</label>
-                <input type="number" class="form-control" id="num_personas" name="num_personas" required>
+                <input type="number" class="form-control" id="num_personas" name="num_personas" placeholder="Número de personas" required>
             </div>
             <button type="submit" class="btn btn-primary" id="agregar_evento">Agregar Evento</button>
             <div id="mensaje"></div>
@@ -136,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     success: function(response) {
                         if (response.success) {
                             $('#mensaje').html('<div class="alert alert-success" role="alert">' + response.message + '</div>');
-                            $('#eventoForm')[0].reset(); // Limpiar los campos del formulario
+                            $('#eventoForm')[0].reset();
                         } else {
                             $('#mensaje').html('<div class="alert alert-danger" role="alert">' + response.message + '</div>');
                         }
@@ -146,4 +149,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
     </script>
 </body>
+
 </html>
